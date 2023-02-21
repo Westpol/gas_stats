@@ -17,6 +17,7 @@ class Menu:
 
     def _print_menu(self, menpoints):
 
+        # -------------------------------------------------------------------------------
         if keyboard.is_pressed("backspace"):
             while keyboard.is_pressed("backspace"):
                 time.sleep(0.01)
@@ -25,7 +26,8 @@ class Menu:
                     self._menupoints[1] = 0
                 if self._menupoints[2] != 0:
                     self._menupoints[2] = 0
-
+        # ---------------------------------------------------------\_ go one step back in menu /‾ go one step further
+        # in menu
         if keyboard.is_pressed("enter"):
             while keyboard.is_pressed("enter"):
                 time.sleep(0.01)
@@ -36,7 +38,9 @@ class Menu:
                 else:
                     self._menupoints[1] = 1
                     menpoints[1] = 1
+        # ------------------------------------------------------------------------------
 
+        # ------------------------------------------------------------------------------
         if self._menupoints[1] == 0 and self._menupoints[2] == 0:
             if keyboard.is_pressed("up"):
                 while keyboard.is_pressed("up"):
@@ -48,14 +52,16 @@ class Menu:
                     time.sleep(0.01)
                 if self._menupoints[0] < 3:
                     self._menupoints[0] += 1
-
+        # --------------------------------------\_ move up/down in menu when Arrow keys are used  /‾ print menu
             menupoints = ["Show Data", "Add Data", "Reset Data"]
             for i in range(0, 3):
                 if i + 1 == menpoints[0]:
                     print(menupoints[i] + "  <")
                 else:
                     print(menupoints[i])
+        # ------------------------------------------------------------------------------
 
+        # get into lower menus ‾\
         if menpoints[0] == 1 and menpoints[1] != 0 and menpoints[2] == 0:
             self._print_dates()
         if menpoints[0] == 1 and menpoints[1] != 0 and menpoints[2] != 0:
