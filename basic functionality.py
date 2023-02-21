@@ -49,12 +49,12 @@ class Menu:
                 if self._menupoints[0] < 3:
                     self._menupoints[0] += 1
 
-            menuPoints = ["Show Data", "Add Data", "Reset Data"]
+            menupoints = ["Show Data", "Add Data", "Reset Data"]
             for i in range(0, 3):
                 if i + 1 == menpoints[0]:
-                    print(menuPoints[i] + "  <")
+                    print(menupoints[i] + "  <")
                 else:
-                    print(menuPoints[i])
+                    print(menupoints[i])
 
         if menpoints[0] == 1 and menpoints[1] != 0 and menpoints[2] == 0:
             self._print_dates()
@@ -116,5 +116,6 @@ if __name__ == "__main__":
         if random.randint(0, 5000) == 1:
             break
     print(str(data.get_data(0, "putin")) + " l")
-    print(str(round((data.get_data(1, "tachom") - data.get_data(0, "tachom")) / data.get_data(1, "putin"), 2)) + " l/100km")
+    print(str(round((data.get_data(1, "tachom") - data.get_data(0, "tachom")) / data.get_data(1, "putin"), 2)) +
+          " l/100km")
     print(datetime.date.today().strftime("%d.%m.%Y"))
