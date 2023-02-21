@@ -37,38 +37,28 @@ class Menu:
                     self._menupoints[1] = 1
                     menpoints[1] = 1
 
-        if menpoints[0] == 1 and menpoints[1] == 0:
-            if keyboard.is_pressed("down"):
-                while keyboard.is_pressed("down"):
-                    time.sleep(0.01)
-                self._menupoints[0] += 1
-            print("Show data  <")
-            print("Add data")
-            print("Reset data")
-        elif menpoints[0] == 2 and menpoints[1] == 0:
+        if self._menupoints[1] == 0 and self._menupoints[2] == 0:
             if keyboard.is_pressed("up"):
                 while keyboard.is_pressed("up"):
                     time.sleep(0.01)
-                self._menupoints[0] -= 1
+                if 1 < self._menupoints[0]:
+                    self._menupoints[0] -= 1
             elif keyboard.is_pressed("down"):
                 while keyboard.is_pressed("down"):
                     time.sleep(0.01)
-                self._menupoints[0] += 1
-            print("Show data")
-            print("Add data  <")
-            print("Reset data")
-        elif menpoints[0] == 3 and menpoints[1] == 0:
-            if keyboard.is_pressed("up"):
-                while keyboard.is_pressed("up"):
-                    time.sleep(0.01)
-                self._menupoints[0] -= 1
-            print("Show data")
-            print("Add data")
-            print("Reset data  <")
+                if self._menupoints[0] < 3:
+                    self._menupoints[0] += 1
 
-        elif menpoints[0] == 1 and menpoints[1] != 0 and menpoints[2] == 0:
+            menuPoints = ["Show Data", "Add Data", "Reset Data"]
+            for i in range(0, 3):
+                if i + 1 == menpoints[0]:
+                    print(menuPoints[i] + "  <")
+                else:
+                    print(menuPoints[i])
+
+        if menpoints[0] == 1 and menpoints[1] != 0 and menpoints[2] == 0:
             self._print_dates()
-        elif menpoints[0] == 1 and menpoints[1] != 0 and menpoints[2] != 0:
+        if menpoints[0] == 1 and menpoints[1] != 0 and menpoints[2] != 0:
             self._print_stats()
 
     def _print_dates(self):
