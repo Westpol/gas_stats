@@ -19,7 +19,13 @@ class Menu:
         if keyboard.is_pressed("enter"):
             while keyboard.is_pressed("enter"):
                 time.sleep(0.01)
-            menpoints[1] = 1
+            if self._menupoints[0] != 0:
+                if self._menupoints[1] != 0:
+                    self._menupoints[2] = 1
+                    menpoints[2] = 1
+                else:
+                    self._menupoints[1] = 1
+                    menpoints[1] = 1
         if menpoints[0] == 1 and menpoints[1] == 0:
             if keyboard.is_pressed("down"):
                 while keyboard.is_pressed("down"):
@@ -49,7 +55,7 @@ class Menu:
             print("Add data")
             print("Reset data  <")
 
-        elif menpoints[0] == 1 and menpoints[1] != 0:
+        elif menpoints[0] == 1 and menpoints[1] != 0 and menpoints[2] == 0:
             self._print_dates()
 
     def _print_dates(self):
