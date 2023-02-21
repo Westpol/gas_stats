@@ -17,16 +17,20 @@ class Menu:
     def _print_menu(self, menpoints):
         if menpoints[0] == 1 and menpoints[1] == 0:
             if keyboard.is_pressed("down"):
+                while keyboard.is_pressed("down"):
+                    time.sleep(0.01)
                 self._menupoints[0] += 1
             print("Show data  <")
             print("Add data")
         elif menpoints[0] == 2 and menpoints[1] == 0:
             if keyboard.is_pressed("up"):
+                while keyboard.is_pressed("up"):
+                    time.sleep(0.01)
                 self._menupoints[0] -= 1
             print("Show data")
             print("Add data  <")
         elif menpoints[0] == 1 and menpoints[1] == 1:
-            pass
+            pass    
 
 
 class Data:
