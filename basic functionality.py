@@ -16,6 +16,16 @@ class Menu:
         self._print_menu(self._menupoints)
 
     def _print_menu(self, menpoints):
+
+        if keyboard.is_pressed("backspace"):
+            while keyboard.is_pressed("backspace"):
+                time.sleep(0.01)
+            if self._menupoints[0] != 0:
+                if self._menupoints[1] != 0 and self._menupoints[2] == 0:
+                    self._menupoints[1] = 0
+                if self._menupoints[2] != 0:
+                    self._menupoints[2] = 0
+
         if keyboard.is_pressed("enter"):
             while keyboard.is_pressed("enter"):
                 time.sleep(0.01)
@@ -26,6 +36,7 @@ class Menu:
                 else:
                     self._menupoints[1] = 1
                     menpoints[1] = 1
+
         if menpoints[0] == 1 and menpoints[1] == 0:
             if keyboard.is_pressed("down"):
                 while keyboard.is_pressed("down"):
@@ -57,6 +68,8 @@ class Menu:
 
         elif menpoints[0] == 1 and menpoints[1] != 0 and menpoints[2] == 0:
             self._print_dates()
+        elif menpoints[0] == 1 and menpoints[1] != 0 and menpoints[2] != 0:
+            self._print_stats()
 
     def _print_dates(self):
         datess = data.get_dates()
@@ -79,22 +92,28 @@ class Menu:
             else:
                 print(datess[i])
 
+    def _print_stats(self):
+        dataa = data.dt
+        print("tachom: " + str(dataa[self._menupoints[1] - 1]["tachom"]) + " km")
+        print("put in: " + str(dataa[self._menupoints[1] - 1]["putin"]) + " l")
+        print("tachom: " + str(dataa[self._menupoints[1] - 1]["ppl"]) + " €/l")
+
 
 class Data:
     def __init__(self):
         self._dates = []
         self._liters = []
         self._tachometer = []
-        self._dt = json.load(open("data.json"))
+        self.dt = json.load(open("data.json"))
 
     def get_dates(self):
         date_list = []
-        for i in range(len(self._dt)):
-            date_list.append(self._dt[i]["date"])
+        for i in range(len(self.dt)):
+            date_list.append(self.dt[i]["date"])
         return date_list
 
     def get_data(self, index, typ):
-        return self._dt[index][typ]
+        return self.dt[index][typ]
 
 
 if __name__ == "__main__":
