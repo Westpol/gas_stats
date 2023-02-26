@@ -1,6 +1,7 @@
 import json
 import datetime
 import random
+import sys
 import time
 import keyboard
 
@@ -21,6 +22,16 @@ class Menu:
         if keyboard.is_pressed("backspace"):
             while keyboard.is_pressed("backspace"):
                 time.sleep(0.01)
+
+            if self._menupoints[1] == 0:
+                print("Do you want to exit? Backspace to exit, enter to stay in the menu.")
+                while 1:
+                    if keyboard.is_pressed("backspace"):
+                        sys.exit()
+                    if keyboard.is_pressed("enter"):
+                        while keyboard.is_pressed("enter"):
+                            time.sleep(0.01)
+                        break
             if self._menupoints[0] != 0:
                 if self._menupoints[1] != 0 and self._menupoints[2] == 0:
                     self._menupoints[1] = 0
