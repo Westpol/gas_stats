@@ -1,23 +1,43 @@
 import sys
-from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QComboBox, QPushButton
-import random
+from PyQt6.QtWidgets import *
+
+
+class Window(QWidget):
+
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("QTabWidget Example")
+        self.resize(1000, 562)
+        # Create a top-level layout
+        layout = QVBoxLayout()
+        self.setLayout(layout)
+        # Create the tab widget with two tabs
+        tabs = QTabWidget()
+        tabs.addTab(self.generalTabUI(), "General")
+        tabs.addTab(self.networkTabUI(), "Network")
+        layout.addWidget(tabs)
+
+    def generalTabUI(self):
+        """Create the General page UI."""
+        generalTab = QWidget()
+        layout = QVBoxLayout()
+        layout.addWidget(QCheckBox("General Option 1"))
+        layout.addWidget(QCheckBox("General Option 2"))
+        generalTab.setLayout(layout)
+        return generalTab
+
+    def networkTabUI(self):
+        """Create the Network page UI."""
+        networkTab = QWidget()
+        layout = QVBoxLayout()
+        layout.addWidget(QCheckBox("Network Option 1"))
+        layout.addWidget(QCheckBox("Network Option 2"))
+        networkTab.setLayout(layout)
+        return networkTab
+
 
 if __name__ == "__main__":
-    # 2. Create an instance of QApplication
-    app = QApplication([])
-
-    # 3. Create your application's GUI
-    window = QWidget()
-    window.setWindowTitle("PyQt App")
-    window.setGeometry(100, 100, 1000, 562)
-    helloMsg = QLabel("<h1>Hello, World!{0}</h1>".format(random.randint(0, 9)), parent=window)
-    helloMsg.move(60, 15)
-    fillBox = QComboBox(parent=window)
-    fillBox.addItems(["one", "two", "three"])
-    fillBox.move(100, 100)
-
-    # 4. Show your application's GUI
+    app = QApplication(sys.argv)
+    window = Window()
     window.show()
-
-    # 5. Run your application's event loop
     sys.exit(app.exec())
