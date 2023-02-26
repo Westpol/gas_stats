@@ -92,7 +92,8 @@ class Menu:
         dataa = data.dt
         print("tachom: " + str(dataa[self._menupoints[1] - 1]["tachom"]) + " km")
         print("put in: " + str(dataa[self._menupoints[1] - 1]["putin"]) + " l")
-        print("tachom: " + str(dataa[self._menupoints[1] - 1]["ppl"]) + " €/l")
+        print("price per liter: " + str(dataa[self._menupoints[1] - 1]["ppl"]) + " €/l")
+        print("paid: " + str(round(float(dataa[self._menupoints[1] - 1]["ppl"]) * float(dataa[self._menupoints[1] - 1]["putin"]), 2)) + " €")
 
 
 class Data:
@@ -100,7 +101,7 @@ class Data:
         self._dates = []
         self._liters = []
         self._tachometer = []
-        self.dt = json.load(open("data.json"))
+        self.dt = json.load(open("data_raw.json"))
 
     def get_dates(self):
         date_list = []
