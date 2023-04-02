@@ -105,6 +105,8 @@ class Menu:
         print("put in: " + str(dataa[self._menupoints[1] - 1]["putin"]) + " l")
         print("price per liter: " + str(dataa[self._menupoints[1] - 1]["ppl"]) + " €/l")
         print("paid: " + str(round(float(dataa[self._menupoints[1] - 1]["ppl"]) * float(dataa[self._menupoints[1] - 1]["putin"]), 2)) + " €")
+        if self._menupoints[1] - 2 >= 0:
+            print("liters per 100km: " + str(dataa[self._menupoints[1] - 1]["putin"] / ((dataa[self._menupoints[1] - 1]["tachom"] - dataa[self._menupoints[1] - 2]["tachom"]) / 100)) + " l/100km")
 
 
 class Data:
