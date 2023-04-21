@@ -1,4 +1,3 @@
-import numpy as np
 from matplotlib import pyplot as plt
 import json
 
@@ -23,7 +22,7 @@ class Data:
 def lp100km(xi):
     if xi >= 1:
         return data.get_data(xi, "putin") / ((data.get_data(xi, "tachom") - data.get_data(xi - 1, "tachom")) / 100)
-    return 0
+    return 6.8
 
 
 if __name__ == "__main__":
