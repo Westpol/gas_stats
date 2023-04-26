@@ -28,11 +28,12 @@ class Window(QWidget):
         self._dates = self._data.get_dates()
         self.setWindowTitle("QTabWidget Example")
         self.resize(1000, 562)
+        self.avg100 = QPushButton("Plot Average l/100km Graph")
         # Create a top-level layout
         layout = QVBoxLayout()
         self.setLayout(layout)
-        # Create the tab widget with two tabs
         tabs = QTabWidget()
+        tabs.addTab(self.generalInformations(), "General")
         for i in range(len(self._dates)):
             tabs.addTab(self.generalTabUI(i), self._dates[i])
         # tabs.addTab(self.generalTabUI(), "General")
@@ -47,6 +48,13 @@ class Window(QWidget):
         layout.addWidget(QCheckBox(str(self._data.dt[num]["tachom"]) + " km"))
         layout.addWidget(QCheckBox(str(self._data.dt[num]["putin"]) + " l"))
         layout.addWidget(QCheckBox(str(self._data.dt[num]["ppl"]) + " €/l"))
+        generalTab.setLayout(layout)
+        return generalTab
+
+    def generalInformations(self):
+        generalTab = QWidget()
+        layout = QVBoxLayout()
+        layout.addWidget(self.avg100)
         generalTab.setLayout(layout)
         return generalTab
 
